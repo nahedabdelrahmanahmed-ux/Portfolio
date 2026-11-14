@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eslam Abdelmawgood Abdelkader | Edge AI & Embedded Systems Architect</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#080c14',
+                        darkcard: '#0f172a',
+                        darkcardhover: '#1e293b',
+                        darkborder: '#1e293b',
+                        brand: {
+                            50: '#ecfeff',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            accent: '#10b981',
+                            blue: '#3b82f6',
+                            purple: '#a855f7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #080c14;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(30, 41, 59, 0.8);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0891b2;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #34d399 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="px-5 py-3 rounded-xl bg-slate-900 border border-cyan-500/40 text-cyan-300 text-sm font-mono shadow-2xl flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+            <span id="toast-message">Copied to clipboard!</span>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 w-full z-40 bg-darkbg/85 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand / Name Logo -->
+                <a href="#about" class="flex items-center gap-3 group">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-emerald-400 p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                        <div class="w-full h-full bg-darkbg rounded-[7px] flex items-center justify-center">
+                            <i class="fa-solid fa-microchip text-cyan-400 text-xs"></i>
+                        </div>
+                    </div>
+                    <span class="font-mono font-bold text-base tracking-tight text-white group-hover:text-cyan-400 transition">
+                        Eslam.Abdelmawgood<span class="text-cyan-400">()</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-7 text-xs font-mono tracking-wide uppercase">
+                    <a href="#about" class="text-slate-300 hover:text-cyan-400 transition">About</a>
+                    <a href="#achievements" class="text-slate-300 hover:text-cyan-400 transition">Honors</a>
+                    <a href="#projects" class="text-slate-300 hover:text-cyan-400 transition">Projects</a>
+                    <a href="#skills" class="text-slate-300 hover:text-cyan-400 transition">Tech Stack</a>
+                    <a href="#education" class="text-slate-300 hover:text-cyan-400 transition">Training</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg bg-cyan-600/20 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-600 hover:text-white font-semibold transition glow-cyan">
+                        Contact Me
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white text-xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3 font-mono text-sm">
+            <a href="#about" onclick="closeMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">About</a>
+            <a href="#achievements" onclick="closeMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Honors &amp; Fellowships</a>
+            <a href="#projects" onclick="closeMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Featured Systems</a>
+            <a href="#skills" onclick="closeMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Tech Stack</a>
+            <a href="#education" onclick="closeMobileMenu()" class="block text-slate-300 hover:text-cyan-400 py-1">Academic &amp; Certs</a>
+            <a href="#contact" onclick="closeMobileMenu()" class="block text-cyan-400 font-semibold py-1">Contact Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen flex flex-col justify-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Bio & Main Info -->
+            <div class="lg:col-span-7 space-y-6">
+                <!-- Location Badge & Tag -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 text-xs font-mono font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Egypt-Based • Available Globally
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-700 bg-slate-800/60 text-slate-300 text-xs font-mono">
+                        <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Helwan Univ '16 (GIS)
+                    </span>
+                </div>
+
+                <!-- Title & Name -->
+                <div class="space-y-2">
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+                        Eslam Abdelmawgood <br class="hidden sm:inline">
+                        <span class="gradient-text">Abdelkader</span>
+                    </h1>
+                    <h2 class="text-xl sm:text-2xl font-mono text-slate-300 font-semibold flex items-center gap-2 pt-1">
+                        <span class="text-cyan-400">&gt;</span> Embedded Systems, Edge AI &amp; Physical AI Architect
+                    </h2>
+                </div>
+
+                <!-- Bio Summary -->
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    Transitioned from a <strong>B.Sc. in Geographic Information Science &amp; Cartography</strong> (Helwan University, 2016) into high-performance <strong>Embedded Systems, Edge AI, Deterministic Optimization, and Industrial IoT</strong>. I architect resilient, zero-cloud offline platforms that execute machine intelligence directly on constrained physical hardware for real-world infrastructure.
+                </p>
+
+                <!-- Key Stats Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                        <div class="text-xl font-black text-cyan-400 font-mono">Top 5</div>
+                        <div class="text-[11px] text-slate-400 font-mono mt-0.5">ETSI ESTIMED (Worldwide)</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                        <div class="text-xl font-black text-emerald-400 font-mono">Top 15</div>
+                        <div class="text-[11px] text-slate-400 font-mono mt-0.5">IJCAI-ECAI Challenge</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                        <div class="text-xl font-black text-purple-400 font-mono">Top 20</div>
+                        <div class="text-[11px] text-slate-400 font-mono mt-0.5">GPIW Water Prize</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                        <div class="text-xl font-black text-blue-400 font-mono">BDIF Fellow</div>
+                        <div class="text-[11px] text-slate-400 font-mono mt-0.5">BHN Germany / Google</div>
+                    </div>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 text-white font-bold transition flex items-center gap-2 shadow-lg glow-cyan text-sm">
+                        <i class="fa-solid fa-layer-group"></i> Explore Projects
+                    </a>
+                    <button onclick="copyEmail()" class="px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-mono text-sm font-semibold transition flex items-center gap-2 group">
+                        <i class="fa-solid fa-copy text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                        <span id="copy-btn-text">eslamabdelmogood@gmail.com</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Terminal Mockup Window -->
+            <div class="lg:col-span-5">
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden shadow-2xl glass-panel relative">
+                    <!-- Window Bar -->
+                    <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">eslam@edge-core:~</span>
+                        <div class="text-xs font-mono text-slate-600">v3.4.1</div>
+                    </div>
+                    <!-- Terminal Content -->
+                    <div class="p-5 font-mono text-xs sm:text-sm space-y-3.5 text-slate-300 leading-relaxed">
+                        <div class="text-slate-500">// System Diagnostic &amp; Hardware Telemetry</div>
+                        
+                        <p><span class="text-cyan-400">$</span> <span class="text-white">target_architecture</span> --query</p>
+                        <p class="text-emerald-400 font-semibold">&gt;&gt; ARM Cortex-M, AVR, RISC-V, Edge AI Workstations</p>
+                        
+                        <p><span class="text-cyan-400">$</span> <span class="text-white">black_dragon_engine</span> --status</p>
+                        <div class="bg-slate-950/80 p-3 rounded-lg border border-slate-800 space-y-1.5 text-xs">
+                            <div class="text-purple-400">[Spider-Bee] Spatial grid pre-filter: Active</div>
+                            <div class="text-cyan-400">[Skyline Engine] Redundant candidate reduction: -93.1%</div>
+                            <div class="text-emerald-400">[LNS Optimizer] Objective score reduction: -71.0%</div>
+                            <div class="text-amber-400">[Camel Mode] Safe 30-min time-budget verified</div>
+                        </div>
+
+                        <p><span class="text-cyan-400">$</span> <span class="text-white">nomad_sentinel</span> --mode</p>
+                        <p class="text-cyan-300">&gt;&gt; Zero-Cloud Autonomous Execution Active [Offline OK]</p>
+
+                        <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-slate-400 text-xs">
+                            <span>Memory: 32KB SRAM</span>
+                            <span class="text-emerald-400 font-semibold">● 100% Deterministic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Global Honors & Fellowships Section -->
+    <section id="achievements" class="py-20 bg-slate-950/60 border-y border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-semibold uppercase tracking-widest">
+                    Global Recognition
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Honors, Fellowships &amp; Competitions</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Internationally validated research, hackathon podiums, and global engineering fellowships.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Fellowship Highlight Card -->
+                <div class="lg:col-span-3 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-cyan-500/40 shadow-xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                        <div class="space-y-3 max-w-3xl">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-cyan-500/20 text-cyan-300 text-xs font-mono font-semibold">
+                                <i class="fa-solid fa-award"></i> Fully Funded International Fellowship
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">BHN Digital Impact Fellowship (BDIF)</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Awarded by <strong>Bechem Humanitarian Network (BHN) e.V., Germany</strong>, in direct partnership with <strong>Google, DataCamp, and Coursera</strong>. Selected for the specialized <strong>Machine Learning &amp; AI Track</strong> at BHN Academy Germany to build high-impact digital solutions for the Global South.
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 min-w-max">
+                            <span class="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-400 font-semibold text-center">
+                                BHN e.V. Germany
+                            </span>
+                            <span class="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-emerald-400 font-semibold text-center">
+                                Google &amp; DataCamp Partner
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Honor Card 1: GPIW -->
+                <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div class="text-xs font-mono text-cyan-400 font-semibold">GPIW International Prize</div>
+                        <h4 class="text-xl font-bold text-white">Global Semi-Finalist (Top 20)</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Recognized in the Global Prize for Innovation in Water for <strong>AquaGuardian AI</strong>—an autonomous Edge AI closed-loop platform for smart water infrastructure.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-500 mt-4">
+                        International Water Innovation Award
+                    </div>
+                </div>
+
+                <!-- Honor Card 2: ETSI ESTIMED -->
+                <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-medal"></i>
+                        </div>
+                        <div class="text-xs font-mono text-emerald-400 font-semibold">ETSI Europe Hackathon</div>
+                        <h4 class="text-xl font-bold text-white">Top 5 Worldwide Podium</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Secured Top 5 Worldwide rank in the ETSI ESTIMED Hackathon (European Telecommunications Standards Institute) with the <strong>Green Box</strong> Industrial IoT platform.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-500 mt-4">
+                        European Telecom Standards Institute
+                    </div>
+                </div>
+
+                <!-- Honor Card 3: IJCAI-ECAI -->
+                <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-ranking-star"></i>
+                        </div>
+                        <div class="text-xs font-mono text-purple-400 font-semibold">IJCAI-ECAI AI Challenge</div>
+                        <h4 class="text-xl font-bold text-white">Top 15 Worldwide Finalist</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Ranked in the Top 15 worldwide competing against international research laboratories in high-performance artificial intelligence algorithms.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-slate-500 mt-4">
+                        International AI Joint Conference
+                    </div>
+                </div>
+
+                <!-- Honor Card 4: YuKaSong & Competitions -->
+                <div class="md:col-span-2 lg:col-span-3 p-6 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg shrink-0">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-bold text-white">YuKaSong Excellence Award &amp; Global AI Challenges</h4>
+                            <p class="text-xs text-slate-400 mt-0.5">Winner of YuKaSong Award of Excellence • Participant in Google Chrome Built-in AI Challenge &amp; NASA Space Apps Challenge.</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400 px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0">
+                        2024 – 2026 Global Events
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Projects Showcase Section -->
+    <section id="projects" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <span class="px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-semibold uppercase tracking-widest">
+                    Engineering Portfolio
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Featured Intelligent Systems</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-1">Explore production-grade hardware, optimization engines, and Edge AI frameworks.</p>
+            </div>
+            
+            <!-- Category Filters -->
+            <div id="filter-container" class="flex flex-wrap gap-2">
+                <button onclick="filterProjects('all')" class="filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyan-600 text-white transition shadow-sm">
+                    All (8)
+                </button>
+                <button onclick="filterProjects('edgeai')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:border-cyan-500/40 transition">
+                    Edge &amp; Physical AI
+                </button>
+                <button onclick="filterProjects('optimization')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:border-cyan-500/40 transition">
+                    Optimization
+                </button>
+                <button onclick="filterProjects('embedded')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:border-cyan-500/40 transition">
+                    Embedded &amp; IIoT
+                </button>
+                <button onclick="filterProjects('healthcare')" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:border-cyan-500/40 transition">
+                    Health &amp; Environment
+                </button>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Project 1: Black Dragon Engine -->
+            <div class="project-card optimization rounded-2xl border border-purple-500/30 bg-slate-900/90 overflow-hidden hover:border-purple-400 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-300 text-xs font-mono font-bold border border-purple-500/20">
+                            OGC 2026 Engine
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition">Black Dragon Optimization Engine</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        Deterministic algorithm solving NP-hard spatial packing &amp; temporal scheduling for 5,000 multi-layer blocks with LNS &amp; Spider-Bee pre-filtering.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">LNS Search</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Spatial Hash</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Python/C</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-blackdragon')" class="w-full py-2.5 rounded-xl bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 2: AquaGuardian AI -->
+            <div class="project-card edgeai healthcare rounded-2xl border border-cyan-500/30 bg-slate-900/90 overflow-hidden hover:border-cyan-400 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 text-xs font-mono font-bold border border-cyan-500/20">
+                            GPIW Semi-Finalist
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Jul 2026 – Present</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition">AquaGuardian AI</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        Closed-loop AI engineering platform for water infrastructure combining Edge AI, Digital Twins, and offline pre-deployment simulation.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Edge AI</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Digital Twins</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Simulations</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-aquaguardian')" class="w-full py-2.5 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 3: Black Dragon Studio -->
+            <div class="project-card edgeai optimization rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 text-xs font-mono font-bold border border-indigo-500/20">
+                            Physical AI Studio
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">May 2026 – Dec 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-indigo-300 transition">Black Dragon Studio</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        Transforms natural language specifications into validated Physical AI runtime code, safety kernels, knowledge graphs, and hardware suites.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">FastAPI</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Knowledge Graph</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Code Gen</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-studio')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-slate-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 4: Nomad Runtime & Sentinel Core -->
+            <div class="project-card edgeai rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-300 text-xs font-mono font-bold border border-blue-500/20">
+                            Runtime Core
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Aug 2025 – Present</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300 transition">Nomad Runtime &amp; Sentinel Core</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        Adaptive AI execution engine dynamically switching model variants based on compute latency with Sentinel Core zero-cloud failure prediction.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Heterogeneous AI</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Sentinel Core</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-nomad')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-slate-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 5: Green Box Platform -->
+            <div class="project-card embedded edgeai rounded-2xl border border-emerald-500/30 bg-slate-900/90 overflow-hidden hover:border-emerald-400 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/20">
+                            ETSI Top 5 Podium
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Jan 2025 – Dec 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-emerald-300 transition">Green Box IIoT Platform</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        ARM Cortex-M proprietary embedded hardware &amp; Edge AI system for off-grid predictive maintenance with custom KiCad PCB and sensor fusion.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">ARM Cortex-M</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Embedded C</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">KiCad PCB</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-greenbox')" class="w-full py-2.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 6: Autex -->
+            <div class="project-card edgeai embedded rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 text-xs font-mono font-bold border border-amber-500/20">
+                            Automotive AI
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Jun 2025 – Present</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition">Autex Diagnostic Platform</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        Edge AI automotive diagnostics system interpreting vibration telemetry and vehicle signals directly on-device for real-time anomaly detection.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Edge Analytics</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Vibration DSP</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-autex')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-600 text-slate-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 7: SMILE -->
+            <div class="project-card healthcare embedded rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden hover:border-rose-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-300 text-xs font-mono font-bold border border-rose-500/20">
+                            Assistive Health
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Sep 2025 – Present</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-rose-300 transition">SMILE Assistive Tech</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        AI-assisted healthcare platform supporting Spinal Muscular Atrophy (SMA) patients using wearable IMUs and assistive hardware controllers.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Wearables</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">Health AI</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-smile')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 8: IrrigaFire & FFS -->
+            <div class="project-card healthcare embedded rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/20">
+                            Agri &amp; Disaster Tech
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Aug 2025 – Present</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-emerald-300 transition">IrrigaFire &amp; Fire Fighter System</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                        Off-grid LoRa &amp; AVR solar early wildfire detection paired with precision smart irrigation and agricultural drought telemetry.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">LoRa Off-Grid</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-950 text-[11px] font-mono text-slate-300 border border-slate-800">AVR Solar</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-950/80 border-t border-slate-800/80">
+                    <button onclick="openModal('modal-irrigafire')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white font-mono text-xs font-semibold transition flex items-center justify-center gap-2">
+                        <span>View Engineering Details</span> <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technical Stack Showcase -->
+    <section id="skills" class="py-20 bg-slate-950/60 border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-semibold uppercase tracking-widest">
+                    Technical Architecture
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Engineering Competencies</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Specialized toolchains spanning low-level bare-metal systems to high-level optimization kernels.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Category 1: Edge AI & Machine Learning -->
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Edge AI &amp; Optimization</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-300 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> TensorFlow Lite Micro &amp; Edge Inference</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Python, NumPy, SciPy, Pandas</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> FastAPI &amp; Knowledge Graph Architectures</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Combinatorial LNS Optimization Algorithms</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Digital Twin Infrastructure Modeling</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Anomaly &amp; Vibration DSP Diagnostics</li>
+                    </ul>
+                </div>
+
+                <!-- Category 2: Embedded Systems & Hardware -->
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Embedded &amp; Hardware</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-300 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> C &amp; Embedded C Systems Programming</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> ARM Cortex-M, AVR, RISC-V Architectures</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> FreeRTOS &amp; Finite State Machines (FSM)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Custom KiCad Schematic &amp; PCB Layout</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Logic Analyzers &amp; Oscilloscope Debugging</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i> Low-Power Solar Power Management</li>
+                    </ul>
+                </div>
+
+                <!-- Category 3: Connectivity & Infrastructure -->
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Connectivity &amp; Protocols</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-300 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-xs"></i> Long-Range Off-Grid LoRa &amp; Sub-GHz</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-xs"></i> UART, SPI, I2C, ADC Sensor Interfacing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-xs"></i> Bluetooth Low Energy (BLE) / Serial</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-xs"></i> Embedded Linux Build Engines</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-xs"></i> Git / Industrial Version Control</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-xs"></i> Deterministic Offline-First Fault Tolerance</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Global Certifications -->
+    <section id="education" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Academic Degree -->
+            <div class="lg:col-span-5 space-y-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-semibold uppercase tracking-widest">
+                        Academic Foundation
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">Degree &amp; Background</h2>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono text-cyan-400 font-semibold">B.Sc. Degree</span>
+                        <span class="text-xs font-mono text-slate-500">2012 – 2016</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">B.Sc. in Geographic Information Science &amp; Cartography</h3>
+                    <div class="text-sm text-slate-300 font-medium">Helwan University, Cairo, Egypt</div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Formed the mathematical, spatial indexing, and analytical foundations that later catalyzed a transition into spatial hash optimizations, Digital Twin infrastructure, and Physical AI.
+                    </p>
+                </div>
+
+                <!-- BDIF Academic Track Badge -->
+                <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-950/60 to-slate-900 border border-cyan-500/30 space-y-2">
+                    <div class="text-xs font-mono text-cyan-300 font-bold">BHN ACADEMY GERMANY</div>
+                    <div class="text-base font-bold text-white">Machine Learning &amp; AI Fellowship Track</div>
+                    <p class="text-xs text-slate-400">Structured international engineering empowerment program in partnership with Google &amp; DataCamp.</p>
+                </div>
+            </div>
+
+            <!-- Specialized International Training Grid -->
+            <div class="lg:col-span-7 space-y-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-semibold uppercase tracking-widest">
+                        Specialized Training
+                    </span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">International Certifications &amp; Labs</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-sm shrink-0">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">MIT Professional Education</h4>
+                            <p class="text-xs text-slate-400">Advanced Systems Architecture &amp; Engineering</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm shrink-0">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">UT Austin</h4>
+                            <p class="text-xs text-slate-400">Embedded Systems &amp; Microcontroller Design</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-sm shrink-0">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Harvey Mudd College</h4>
+                            <p class="text-xs text-slate-400">Autonomous Systems &amp; Robotics</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center text-sm shrink-0">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">King's College London</h4>
+                            <p class="text-xs text-slate-400">Sensory Systems &amp; Signal Processing</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-sm shrink-0">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">The Linux Foundation</h4>
+                            <p class="text-xs text-slate-400">Embedded Linux Kernel Development</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-sm shrink-0">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">ARM &amp; Tokyo Tech &amp; Curtin</h4>
+                            <p class="text-xs text-slate-400">Microcontroller Architecture &amp; Edge Computing</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer id="contact" class="py-20 bg-slate-950 border-t border-slate-800/80 relative">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-8">
+            <div class="space-y-3">
+                <span class="px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 text-xs font-mono font-semibold uppercase tracking-widest">
+                    Get In Touch
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">Let's Engineer Intelligent Hardware</h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+                    Interested in Edge AI deployments, deterministic optimization architectures, or embedded industrial IoT collaboration? Reach out directly.
+                </p>
+            </div>
+
+            <!-- Email Card CTA -->
+            <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-left">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-mono text-slate-500">Direct Contact</div>
+                        <div class="text-sm font-mono font-bold text-white">eslamabdelmogood@gmail.com</div>
+                    </div>
+                </div>
+                <button onclick="copyEmail()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-mono text-xs font-bold transition flex items-center justify-center gap-2 shadow-lg glow-cyan">
+                    <i class="fa-solid fa-copy"></i> Copy Email
+                </button>
+            </div>
+
+            <!-- Social Links & Location -->
+            <div class="flex items-center justify-center gap-6 pt-4 text-slate-400">
+                <a href="mailto:eslamabdelmogood@gmail.com" class="hover:text-cyan-400 text-xl transition"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 text-xl transition"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 text-xl transition"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+
+            <div class="pt-8 border-t border-slate-900 text-xs font-mono text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <span>© Eslam Abdelmawgood Abdelkader • Egypt</span>
+                <span>Edge AI &amp; Physical Systems Architecture</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Detail Modals for Projects -->
+    <div id="modal-overlay" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        
+        <!-- Modal: Black Dragon -->
+        <div id="modal-blackdragon" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-purple-500/40 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-purple-400 font-semibold">OGC 2026 Engine</span>
+                    <h3 class="text-2xl font-bold text-white">Black Dragon Optimization Engine</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>Designed for the <strong>Optimization Grand Challenge 2026</strong> solving NP-hard spatial packing &amp; temporal scheduling across 5,000 multi-layer blocks.</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+                    <div class="text-purple-400 font-bold">// Performance &amp; Engineering Metrics:</div>
+                    <div class="text-emerald-400">✓ Resolved 4 critical baseline floating-point truncation bugs ensuring 100% feasibility.</div>
+                    <div class="text-cyan-400">✓ Spatial Pre-Filtering (Spider &amp; Bee): Grid hash &amp; bounding box cache eliminated &gt;88% redundant geometry calls.</div>
+                    <div class="text-amber-400">✓ Profiling Overhead: Reduced geometry validation time by 75%.</div>
+                    <div class="text-cyan-400">✓ Skyline Engine: Reduced candidate placement positions by 93.1%.</div>
+                    <div class="text-emerald-400">✓ LNS Post-Processor: Destroy &amp; Reconstruct algorithm achieved 71% objective score reduction.</div>
+                    <div class="text-purple-300">✓ Camel Mode: Ensured strictly safe 30-minute time-budget kernel execution.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: AquaGuardian -->
+        <div id="modal-aquaguardian" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-cyan-500/40 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-cyan-400 font-semibold">GPIW Semi-Finalist</span>
+                    <h3 class="text-2xl font-bold text-white">AquaGuardian AI</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>Closed-loop AI engineering platform designed for resilient water infrastructure. Combines Edge AI sensing, Digital Twin simulation, stress-testing, and autonomous decision-making prior to physical field execution.</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+                    <div class="text-cyan-400 font-bold">// Architectural Highlights:</div>
+                    <div>• Global Semi-Finalist (Top 20 Worldwide) at the Global Prize for Innovation in Water (GPIW).</div>
+                    <div>• Simulates pipe degradation, flow dynamics, and pressure anomalies offline.</div>
+                    <div>• Autonomous actuator feedback loop without cloud round-trip dependencies.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Black Dragon Studio -->
+        <div id="modal-studio" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-indigo-400 font-semibold">Physical AI Studio</span>
+                    <h3 class="text-2xl font-bold text-white">Black Dragon Studio</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>AI engineering tool platform transforming natural-language requirements into validated Physical AI starter code, system specs, safety rules, and deployment packages via Python, FastAPI, and an Engineering Knowledge Graph.</p>
+            </div>
+        </div>
+
+        <!-- Modal: Nomad Runtime -->
+        <div id="modal-nomad" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-blue-400 font-semibold">Adaptive Execution</span>
+                    <h3 class="text-2xl font-bold text-white">Nomad Runtime &amp; Sentinel Core</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>Adaptive AI execution engine dynamically selecting optimal AI models and hardware execution paths based on real-time latency and hardware limits. Backed by Sentinel Core for deterministic zero-cloud failure prediction.</p>
+            </div>
+        </div>
+
+        <!-- Modal: Green Box -->
+        <div id="modal-greenbox" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-emerald-500/40 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-emerald-400 font-semibold">ETSI Top 5 Worldwide</span>
+                    <h3 class="text-2xl font-bold text-white">Green Box IIoT Platform</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>Proprietary embedded hardware platform built on ARM Cortex-M microcontrollers for predictive maintenance and industrial monitoring in off-grid environments.</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+                    <div class="text-emerald-400 font-bold">// Key Achievements:</div>
+                    <div>• Top 5 Worldwide at ETSI ESTIMED Hackathon (European Telecommunications Standards Institute).</div>
+                    <div>• Winner of YuKaSong Award of Excellence.</div>
+                    <div>• Custom KiCad PCB design with low-noise UART/ADC sensor interfaces.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Autex -->
+        <div id="modal-autex" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-amber-400 font-semibold">Edge Diagnostics</span>
+                    <h3 class="text-2xl font-bold text-white">Autex Diagnostic Platform</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>Edge AI automotive diagnostics platform analyzing onboard sensor telemetry and vibration data locally for real-time predictive vehicle health and component wear monitoring.</p>
+            </div>
+        </div>
+
+        <!-- Modal: SMILE -->
+        <div id="modal-smile" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-rose-400 font-semibold">Assistive Health</span>
+                    <h3 class="text-2xl font-bold text-white">SMILE Assistive Tech</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>AI-assisted healthcare platform empowering patients with Spinal Muscular Atrophy (SMA) using custom wearable IMU sensors and assistive hardware controllers.</p>
+            </div>
+        </div>
+
+        <!-- Modal: IrrigaFire -->
+        <div id="modal-irrigafire" class="modal-box hidden max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-emerald-400 font-semibold">Disaster &amp; Agriculture</span>
+                    <h3 class="text-2xl font-bold text-white">IrrigaFire &amp; Fire Fighter System (FFS)</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl font-mono">&times;</button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>Integrated intelligent irrigation and drought monitoring platform combined with an off-grid LoRa/AVR solar wildfire early-detection network designed for autonomous remote deployment.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Copy Email to Clipboard Function
+        function copyEmail() {
+            const email = "eslamabdelmogood@gmail.com";
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(showToast).catch(() => fallbackCopy(email));
+            } else {
+                fallbackCopy(email);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Project Category Filter Logic
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-cyan-600', 'text-white', 'active');
+                btn.classList.add('bg-slate-900', 'text-slate-300');
+            });
+            
+            event.currentTarget.classList.remove('bg-slate-900', 'text-slate-300');
+            event.currentTarget.classList.add('bg-cyan-600', 'text-white', 'active');
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal System Logic
+        function openModal(modalId) {
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.remove('hidden');
+            document.querySelectorAll('.modal-box').forEach(box => box.classList.add('hidden'));
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.add('hidden');
+            document.querySelectorAll('.modal-box').forEach(box => box.classList.add('hidden'));
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
